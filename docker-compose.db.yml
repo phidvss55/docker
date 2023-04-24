@@ -1,0 +1,42 @@
+version: "3"
+#NETWORKS
+networks:
+  my-network:
+    driver: bridge
+#VOLUMES
+volumes:
+  dir-site:
+    driver_opts:
+      # Path to folder store project in your local
+      device: C:\DATA\docker
+      o: bind
+      type: "nfs"
+services:
+  redis:
+    image: redis:6.2.4-alpine
+    container_name: redis
+    networks:
+     - my-network
+    ports:
+     - 6379:6379
+    volumes:
+     - ./redis-data:/data
+
+  my-mysql:
+    container_name: c-mysql
+    image: "mysql:latest"
+    restart: always
+    networks:
+      - my-network
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      #- ./databases:/home/databases
+    hostname: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=A@123456789abcd
+      - MYSQL_DATABASE=wp_dbtest
+      - MYSQL_USER=siteuser
+      - MYSQL_PASSWORD=sitepass
+    ports:
+      - "8083:3306"

@@ -8,7 +8,7 @@ volumes:
   dir-site:
     driver_opts:
       # Path to folder store project in your local
-      device: /home/oem/Data/Projects
+      device: C:\DATA\docker
       o: bind
       type: "nfs"
 services:
