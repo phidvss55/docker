@@ -4,7 +4,7 @@ up: docker-compose.yml
 		docker-compose -f ./docker-compose.yml up --build -d
 
 up-db: docker-compose.yml
-	docker-compose -f ./docker-compose-db.yml up --build -d
+	docker-compose -f ./docker-compose.db.yml up --build -d
 
 ssh-mysql:
 	docker exec -it c-mysql bash

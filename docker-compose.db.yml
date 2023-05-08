@@ -40,3 +40,23 @@ services:
       - MYSQL_PASSWORD=sitepass
     ports:
       - "8083:3306"
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "6543:5432"
+    environment:
+      - POSTGRES_DB=tigergcp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+
+  # adminer:
+  #   container_name: adminer
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
