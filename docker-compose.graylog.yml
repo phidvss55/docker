@@ -1,0 +1,26 @@
+version: "3"
+#NETWORKS
+networks:
+  my-network:
+    driver: bridge
+#VOLUMES
+volumes:
+  dir-site:
+    driver_opts:
+      device: C:\DATA\docker
+      o: bind
+      type: "nfs"
+services:
+  graylog:
+    image: graylog/graylog:4.1
+    container_name: graylog
+    restart: always
+    environment:
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://localhost:9001/
+      - GRAYLOG_PASSWORD_SECRET=admin_admin_admin
+      - GRAYLOG_ROOT_PASSWORD_SHA2=secret
+      - GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9001/api
+    ports:
+      - "9001:9000"
+      - "1514:1514"
+      - "514:514/udp"
