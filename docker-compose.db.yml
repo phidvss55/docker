@@ -16,43 +16,43 @@ services:
     image: redis:6.2.4-alpine
     container_name: redis
     networks:
-     - my-network
-    ports:
-     - 6379:6379
-    volumes:
-     - ./redis-data:/data
-
-  my-mysql:
-    container_name: c-mysql
-    image: "mysql:latest"
-    restart: always
-    networks:
       - my-network
-    volumes:
-      - ./db:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
-      #- ./databases:/home/databases
-    hostname: mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=A@123456789abcd
-      - MYSQL_DATABASE=wp_dbtest
-      - MYSQL_USER=siteuser
-      - MYSQL_PASSWORD=sitepass
     ports:
-      - "8083:3306"
+      - 6379:6379
+    volumes:
+      - ./redis-data:/data
 
-  postgres:
-    container_name: postgres
-    image: postgres
-    restart: always
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    ports:
-      - "6543:5432"
-    environment:
-      - POSTGRES_DB=tigergcp
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=12345678
+  # my-mysql:
+  #   container_name: c-mysql
+  #   image: "mysql:latest"
+  #   restart: always
+  #   networks:
+  #     - my-network
+  #   volumes:
+  #     - ./db:/var/lib/mysql
+  #     - ./mysql/my.cnf:/etc/mysql/my.cnf
+  #     #- ./databases:/home/databases
+  #   hostname: mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=A@123456789abcd
+  #     - MYSQL_DATABASE=wp_dbtest
+  #     - MYSQL_USER=siteuser
+  #     - MYSQL_PASSWORD=sitepass
+  #   ports:
+  #     - "8083:3306"
+
+  # postgres:
+  #   container_name: postgres
+  #   image: postgres
+  #   restart: always
+  #   volumes:
+  #     - ./data/db:/var/lib/postgresql/data
+  #   ports:
+  #     - "6543:5432"
+  #   environment:
+  #     - POSTGRES_DB=tigergcp
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=12345678
 
   # adminer:
   #   container_name: adminer

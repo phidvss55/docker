@@ -18,7 +18,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./php/
-      args: 
+      args:
         - WITH_XDEBUG=true
     restart: always
     hostname: php
@@ -34,7 +34,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./php56/
-      args: 
+      args:
         - WITH_XDEBUG=true
     restart: always
     hostname: php
@@ -79,5 +79,3 @@ services:
       - MYSQL_PASSWORD=sitepass
     ports:
       - "8083:3306"
-
-      
