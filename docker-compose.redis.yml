@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:6.2.4-alpine
+    container_name: redis
+    restart: always
+    networks:
+      - my-network
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    container_name: redis-insight
+    restart: always
+    ports:
+      - 5540:5540
+    # networks:
+    # - my-network
+    volumes:
+      - redis-insight-data:/data
+
+volumes:
+  redis-data:
+  redis-insight-data:
+
+networks:
+  my-network:
+    driver: bridge

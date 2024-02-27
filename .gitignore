@@ -3,6 +3,8 @@ node_modules
 app/tmp/
 db
 data
-redis-data
 bitnami
 kui
+
+# redis-data
+redis-insight-data

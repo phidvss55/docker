@@ -12,15 +12,15 @@ volumes:
       o: bind
       type: "nfs"
 services:
-  redis:
-    image: redis:6.2.4-alpine
-    container_name: redis
-    networks:
-      - my-network
-    ports:
-      - 6379:6379
-    volumes:
-      - ./redis-data:/data
+  # redis:
+  #   image: redis:6.2.4-alpine
+  #   container_name: redis
+  #   networks:
+  #     - my-network
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - ./redis-data:/data
 
   my-mysql:
     container_name: c-mysql
